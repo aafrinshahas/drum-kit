@@ -9,7 +9,7 @@ A simple JavaScript-based sound player that plays different sounds when you pres
 - Adds a visual effect to indicate the pressed key.
 - Removes the effect after the animation ends.
 
-## Features
+## Setup
 
 git clone https://github.com/your-username/keyboard-sound-player.git
 
