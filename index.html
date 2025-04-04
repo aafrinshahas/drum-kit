@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drum kit</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--main container-->
+<div class="keys">
+<!--particlar key-->
+<div data-key="65" class="key">
+<kbd>A</kbd>
+<span class="sound">clap</span>
+</div>
+<!--particlar key-->
+<div data-key="83" class="key">
+<kbd>S</kbd>
+<span class="sound">hit</span>
+</div>
+<!--particlar key-->
+<div data-key="68" class="key">
+<kbd>D</kbd>
+<span class="sound">kick</span>
+</div>
+<!--particlar key-->
+<div data-key="70" class="key">
+<kbd>F</kbd>
+<span class="sound">drumb</span>
+</div>
+            <!--particlar key-->
+            <div data-key="71" class="key">
+                <kbd>G</kbd>
+                <span class="sound">boom</span>
+            </div>
+</div>
+
+<audio data-key="65" src="sounds/clap.wav"></audio>
+<audio data-key="83" src="sounds/hit.wav"></audio>
+<audio data-key="68" src="sounds/kick.wav"></audio>
+<audio data-key="70" src="sounds/drumb.wav"></audio>
+<audio data-key="71" src="sounds/boom.wav"></audio>
+
+<script>
+function playSound(e) {
+const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+if (!audio) return;  // Stop if no audio is found
+
+audio.currentTime = 0;  // Restart the sound on each press
+audio.play();
+
+if (key) key.classList.add('playing');  // Add 'playing' class if key exists
+}
+
+function removeTransition(e) {
+if (e.propertyName !== 'transform') return;  // Ignore non-transform transitions
+this.classList.remove('playing');  // 'this' correctly refers to the key element
+}
+
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+window.addEventListener("keydown", playSound);
+</script>
+
+</body>
+</html>
