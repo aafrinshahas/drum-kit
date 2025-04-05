@@ -11,5 +11,5 @@ A simple JavaScript-based sound player that plays different sounds when you pres
 
 ## Setup
 
-git clone 
+git clone https://github.com/aafrinshahas/drum-kit.git
 
